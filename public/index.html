@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Video Downloader</h1>
+        <form id="download-form">
+            <div class="input-group">
+                <input type="text" id="url" name="url" required placeholder="Cari atau paste link di sini...">
+                <button type="button" id="fetch-resolutions">Start</button>
+            </div>
+            <div id="resolution-section" style="display:none;">
+                <label for="resolution">Select Resolution:</label>
+                <select id="resolution" name="resolution">
+                    <!-- Options will be populated dynamically -->
+                </select>
+                <button type="submit" id="download-video">Download Video</button>
+                <button type="button" id="download-audio">Download Audio</button>
+            </div>
+        </form>
+        <div id="message"></div>
+        <div id="loading" style="display:none;">Processing...</div>
+        <div id="video-info"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
