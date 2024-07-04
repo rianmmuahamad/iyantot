@@ -2,10 +2,13 @@ const express = require('express');
 const ytdl = require('ytdl-core');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const { spawn } = require('child_process');
 
 const app = express();
 const PORT = 3000;
+
+const tempDir = os.tmpdir(); // Menggunakan direktori sementara sistem
 
 app.use(express.static(path.join(__dirname, '..', 'public'))); 
 app.use(express.json());
@@ -46,9 +49,9 @@ app.post('/video-info', async (req, res) => {
 app.post('/download', async (req, res) => {
     const { url, resolution } = req.body;
     console.log('Received request to download video with URL:', url, 'and resolution:', resolution);
-    const videoPath = path.join(__dirname, 'temp', `${Date.now()}_video.mp4`);
-    const audioPath = path.join(__dirname, 'temp', `${Date.now()}_audio.mp4`);
-    const outputPath = path.join(__dirname, 'temp', `${Date.now()}.mp4`);
+    const videoPath = path.join(tempDir, `${Date.now()}_video.mp4`);
+    const audioPath = path.join(tempDir, `${Date.now()}_audio.mp4`);
+    const outputPath = path.join(tempDir, `${Date.now()}.mp4`);
 
     try {
         const info = await ytdl.getInfo(url);
